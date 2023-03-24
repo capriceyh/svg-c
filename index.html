@@ -1,0 +1,68 @@
+<svg version="1.1"
+     baseProfile="full"
+     width="300" height="200"
+     xmlns="http://www.w3.org/2000/svg">
+  <path id='rotate' stroke="black" fill="pink"/>
+</svg>
+
+<script>
+
+var ro = document.getElementById('rotate');
+console.log(ro)
+
+function createC1(x1,y1,x2,y2,Xe,Ye) {
+    var c1 = "C " + x1 + " " + y1 + ", " + x2 + " " + y2 + ", " + Xe + " " + Ye + " "
+    return c1
+}
+
+function createC2(x1,y1,x2,y2,Xe,Ye) {
+    var c2 = "C " + x1 + " " + y1 + ", " + x2 + " " + y2 + ", " + Xe + " " +Ye
+    return c2
+}
+
+function createPath(Xs,Ys,x1,y1,x2,y2,Xe,Ye) {
+    var path="M "+ Xs + " " + Ys + " "
+    return path
+}
+var x1 = 20
+var y1 = 70
+
+x1_add = true
+
+var x2 = 160
+var y2 = 20
+
+x2_add = false
+
+setInterval(()=> {
+
+    var path = createPath(90,80)
+    var c1 = createC1(90,20,x1,y1,90,120)
+    var c2 = createC2(x2,y2,90,20,90,80)
+
+    var a = path + c1 + c2
+
+    if(x1_add == true && x2_add == false){
+        x1 ++;
+        x2 --;
+        if(x1 == 160 || x2 == 20){
+            x1_add = false
+            x2_add = true
+        }
+        console.log(x1,"x1")
+        console.log(x2,"x2")
+    }else {
+        x1 --;
+        x2 ++;
+        if(x1 == 20 || x2 == 160){
+            x1_add = true
+            x2_add = false
+        }
+        console.log(x1,"x1")
+        console.log(x2,"x2")
+    }
+
+    ro.setAttribute("d",a)
+},15)
+
+</script>
